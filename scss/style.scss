@@ -1,0 +1,40 @@
+$color-primary: #8f61fa ;
+$color-secondary: #e48a25 ;
+$color-tertiary :#f3e9f1;
+$color-gradient: linear-gradient(to left, $color-primary, $color-secondary);
+
+body {
+    background: $color-tertiary;
+}
+
+header{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    li{
+        list-style: none;
+    }
+}
+
+.fa-shopping-cart{
+    color: $color-primary;
+    font-size: 3rem;
+}
+
+#container{
+    width: 90%;
+}
+
+.flex-center{
+    justify-content: center;
+}
+
+footer{
+    width: 90%;
+    margin:auto;
+    display: flex;
+    p{
+        margin-right: 3rem;
+    }
+}
