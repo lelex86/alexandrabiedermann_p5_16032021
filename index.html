@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Orinoco</title>
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="/images/Orinoco.png" alt="logo Orinoco"></a>
+        <ul>
+            <a href="panier.html"><li>Panier</li></a>
+        </ul>
+    </header>
+    <div id="container">
+    </div>
+    <footer>
+        <p>contactez nous</p>
+        <p>autre</p>
+    </footer>
+    <script src="./js/Model.js"></script>
+    <script src="./js/View.js"></script>
+    <script src="./js/Controller.js"></script>
+    <script>
+        let controller = new Controller();
+        controller.showListProduct();
+    </script>
+
+</body>
+</html>
