@@ -2,8 +2,11 @@ class Controller {
     //Classe à appeler dans la page html pour afficher la page
 
     //classe pour la page d'accueil
-    showListProduct() {
-        let listProduct = Model.get('http://localhost:3000/api/cameras');
+    async showListProduct() {
+        let url = "http://localhost:3000/api/teddies/";
+        let listProduct = await Model.get(url).then(function (response){
+            return (JSON.parse(response))
+        });
         let view = new View();
         view.showListProduct(listProduct);
     }
@@ -12,7 +15,7 @@ class Controller {
     async showDetailProduct() {
         let searchParams = new URLSearchParams(window.location.search);
         let id = searchParams.get('id');
-        let url = 'http://localhost:3000/api/cameras/' + id;
+        let url = 'http://localhost:3000/api/teddies/' + id;
         let detailProduct = Model.get(url)
         let view = new View();
         view.showDetailProduct(detailProduct);
@@ -26,7 +29,7 @@ class Controller {
 
     // page finale utilisant un POST pour afficher les données envoyées au server (Formulaire et produits)
     async postOrder() {
-        let postOrder = Model.post('http://localhost:3000/api/cameras/order');
+        let postOrder = Model.post('http://localhost:3000/api/teddies/');
         let view = new View();
         view.cameraOrder(postOrder);
         // la ligne suivante vide le panier apres chaque achats.

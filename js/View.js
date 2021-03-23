@@ -5,6 +5,15 @@ class View {
 
 
     showListProduct(listProduct) {
+  
+        let container= document.getElementById("container");    
+        for (let i=0; i<=listProduct.length; i++){
+        let viewProduct=listProduct[i];
+        viewProduct= document.createElement("article");
+        container.appendChild(viewProduct);
+        viewProduct.setAttribute ("id","produit"+i);
+
+        }
 
         
     }
