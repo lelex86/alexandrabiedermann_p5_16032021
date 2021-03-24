@@ -12,9 +12,14 @@ header{
     margin: auto;
     display: flex;
     justify-content: space-between;
-    li{
-        list-style: none;
+    flex-wrap: wrap;
+    ul{
+        padding: 0 2px;
+        li{
+            list-style: none;
+        }
     }
+    
 }
 
 .fa-shopping-cart{
@@ -22,8 +27,43 @@ header{
     font-size: 3rem;
 }
 
+h1{
+    text-align: center;
+    margin: 5% auto ;
+}
+
 #container{
     width: 90%;
+    margin: 20px auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+article{
+    width: 45%;
+    min-width:300px;
+    height: fit-content;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 15px;
+    background-color: $color-secondary;
+    margin: 3% 0 0 3%;
+    div{
+        width:100%;
+        height: auto;
+        overflow: hidden;
+        img{
+            width:100%;
+            object-fit: cover;
+            object-position: bottom;
+        }
+    }
+    h2{
+        text-align: center;
+    }
+    
 }
 
 .flex-center{
@@ -34,6 +74,7 @@ footer{
     width: 90%;
     margin:auto;
     display: flex;
+    justify-content: space-between;
     p{
         margin-right: 3rem;
     }

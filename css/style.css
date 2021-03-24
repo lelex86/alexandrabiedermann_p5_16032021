@@ -11,9 +11,15 @@ header {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
-header li {
+header ul {
+  padding: 0 2px;
+}
+
+header ul li {
   list-style: none;
 }
 
@@ -22,8 +28,56 @@ header li {
   font-size: 3rem;
 }
 
+h1 {
+  text-align: center;
+  margin: 5% auto;
+}
+
 #container {
   width: 90%;
+  margin: 20px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+article {
+  width: 45%;
+  min-width: 300px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 15px;
+  background-color: #e48a25;
+  margin: 3% 0 0 3%;
+}
+
+article div {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+article div img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: bottom;
+     object-position: bottom;
+}
+
+article h2 {
+  text-align: center;
 }
 
 .flex-center {
@@ -38,6 +92,9 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 footer p {
