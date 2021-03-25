@@ -1,0 +1,23 @@
+section{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 3% 0;
+    div{
+        width:45%;
+        min-width: 300px;
+        height: fit-content;
+        text-align: center;
+        img{
+            width: 100%;
+            object-fit: cover;
+            overflow: hidden;
+        }
+        select{
+            display: block;
+            margin: 2% auto;
+        }
+    }
+}
+

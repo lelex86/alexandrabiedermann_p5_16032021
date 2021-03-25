@@ -2,35 +2,17 @@ body {
   background: #f3e9f1;
 }
 
-header {
-  width: 90%;
-  margin: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-header ul {
-  padding: 0 2px;
-}
-
-header ul li {
-  list-style: none;
-}
-
-.fa-shopping-cart {
-  color: #8f61fa;
-  font-size: 3rem;
-}
-
 h1 {
   text-align: center;
-  margin: 5% auto;
+  margin: 1% auto 5%;
+}
+
+button {
+  padding: 3% 5%;
+  margin: 2%;
+  border-radius: 15px;
+  background-color: #d5c4fd;
+  border: none;
 }
 
 #container {
@@ -48,9 +30,68 @@ h1 {
           align-items: center;
 }
 
-article {
+header {
+  width: 90%;
+  margin: 3% auto 2%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+header ul {
+  padding: 0 2px;
+}
+
+header ul li {
+  list-style: none;
+}
+
+header img {
+  text-align: left;
+}
+
+.fa-shopping-cart {
+  color: #8f61fa;
+  font-size: 3rem;
+}
+
+footer {
+  width: 90%;
+  margin: 2% auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+footer p {
+  margin-right: 3rem;
+}
+
+#container a {
   width: 45%;
   min-width: 300px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 3% 0;
+  text-align: center;
+  color: black;
+  text-decoration: none;
+}
+
+article {
+  width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -59,7 +100,6 @@ article {
           box-sizing: border-box;
   border-radius: 15px;
   background-color: #e48a25;
-  margin: 3% 0 0 3%;
 }
 
 article div {
@@ -80,24 +120,38 @@ article h2 {
   text-align: center;
 }
 
-.flex-center {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-footer {
-  width: 90%;
-  margin: auto;
+section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 3% 0;
 }
 
-footer p {
-  margin-right: 3rem;
+section div {
+  width: 45%;
+  min-width: 300px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  text-align: center;
+}
+
+section div img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  overflow: hidden;
+}
+
+section div select {
+  display: block;
+  margin: 2% auto;
 }
 /*# sourceMappingURL=style.css.map */

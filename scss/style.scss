@@ -1,81 +1,15 @@
-$color-primary: #8f61fa ;
-$color-secondary: #e48a25 ;
-$color-tertiary :#f3e9f1;
-$color-gradient: linear-gradient(to left, $color-primary, $color-secondary);
+@import "utils/variables";
 
-body {
-    background: $color-tertiary;
-}
 
-header{
-    width: 90%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    ul{
-        padding: 0 2px;
-        li{
-            list-style: none;
-        }
-    }
-    
-}
+@import "base/base";
 
-.fa-shopping-cart{
-    color: $color-primary;
-    font-size: 3rem;
-}
 
-h1{
-    text-align: center;
-    margin: 5% auto ;
-}
+@import "components/buttons";
 
-#container{
-    width: 90%;
-    margin: 20px auto;
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-}
 
-article{
-    width: 45%;
-    min-width:300px;
-    height: fit-content;
-    overflow: hidden;
-    box-sizing: border-box;
-    border-radius: 15px;
-    background-color: $color-secondary;
-    margin: 3% 0 0 3%;
-    div{
-        width:100%;
-        height: auto;
-        overflow: hidden;
-        img{
-            width:100%;
-            object-fit: cover;
-            object-position: bottom;
-        }
-    }
-    h2{
-        text-align: center;
-    }
-    
-}
+@import "layout/container";
+@import "layout/header";
+@import "layout/footer";
 
-.flex-center{
-    justify-content: center;
-}
-
-footer{
-    width: 90%;
-    margin:auto;
-    display: flex;
-    justify-content: space-between;
-    p{
-        margin-right: 3rem;
-    }
-}
+@import "pages/index";
+@import "pages/ficheProduit";
