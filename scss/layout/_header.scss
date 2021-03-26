@@ -7,8 +7,22 @@ header{
     flex-wrap: wrap;
     ul{
         padding: 0 2px;
+        position: relative;
         li{
             list-style: none;
+        }
+        p{
+            margin:0;
+            width:18px;
+            height: 18px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            top:20%;
+            left:49%;
+            z-index:2;
+
         }
     }
     img{

@@ -4,4 +4,5 @@ button{
     border-radius: 15px;
     background-color: lighten($color: $color-primary, $amount: 20);
     border: none;
+    cursor: pointer;
 }

@@ -13,6 +13,7 @@ button {
   border-radius: 15px;
   background-color: #d5c4fd;
   border: none;
+  cursor: pointer;
 }
 
 #container {
@@ -48,10 +49,24 @@ header {
 
 header ul {
   padding: 0 2px;
+  position: relative;
 }
 
 header ul li {
   list-style: none;
+}
+
+header ul p {
+  margin: 0;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: 20%;
+  left: 49%;
+  z-index: 2;
 }
 
 header img {

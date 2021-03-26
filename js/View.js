@@ -5,94 +5,60 @@ class View {
 
 
     showListProduct(listProduct) {
-  
-        let container= document.getElementById("container");    
+        Controller.displayBasketCount();   
         for (let i=0; i<listProduct.length; i++){
             let linkProduct=listProduct[i];
             let viewProduct=listProduct[i];
             let viewImage=listProduct[i];
-            linkProduct= document.createElement("a");
-            viewProduct= document.createElement("article");
-            viewImage=document.createElement("div");
-            container.appendChild(linkProduct);
-            linkProduct.setAttribute("href", "ficheProduit.html?id=" + listProduct[i]._id)
-            linkProduct.appendChild(viewProduct);
-            viewProduct.setAttribute ("id","produit"+i);
-            viewProduct.appendChild(viewImage);
-            viewImage.setAttribute("id","img"+i);
-        }
-
-        for (let i=0; i<listProduct.length; i++){
-            let srcImage=listProduct[i].imageUrl;
-            let nom=listProduct[i].name;
-            let imageProduit= document.createElement("img");
-            let nomProduit= document.createElement("h2");
-            let img=document.getElementById("img"+i);
-            let produit=document.getElementById("produit"+i);
-            img.appendChild(imageProduit);
-            imageProduit.setAttribute("src", srcImage);
-            produit.appendChild(nomProduit);
-            nomProduit.innerHTML= nom;
-        }
-
-        
-
-        
+            document.getElementById("container").innerHTML+=`
+                <a href= "ficheProduit.html?id=${listProduct[i]._id}">
+                    <article>
+                        <div>
+                            <img src="${listProduct[i].imageUrl}"/>
+                            <h2>${listProduct[i].name}</h2>
+                        </div>
+                    </article>
+                </a>`;
+        } 
     }
 
     /***********************PAGE ARTICLE INDIVIDUEL **************************/
 
     // On affiche le produit récuperé avec l'Id + l'URL via notre controller
     showDetailProduct(detailProduct) {
-
-        let nom = detailProduct.name;
-        let description = detailProduct.description;
-        let srcImage = detailProduct.imageUrl;
-        let prix= detailProduct.price/100;
-        let personalisation = detailProduct.colors;
-        let container= document.getElementById("container"); 
-        let imageProduit=document.createElement("img");
-        let nomProduit= document.createElement("h1");
-        let descriptionProduit = document.createElement("p");
-        let prixProduit = document.createElement("p")
-        let section=document.createElement("section");
-        let blocDroit=document.createElement("div");
-        let blocGauche=document.createElement("div");
-        let choixPersonalisation= document.createElement("select")
-        blocDroit.setAttribute("id", "droit");
-        blocGauche.setAttribute("id", "gauche");
-        imageProduit.setAttribute("src", srcImage);
-        container.appendChild(nomProduit);
-        container.appendChild(section);
-        section.appendChild(blocGauche);
-        section.appendChild(blocDroit);
-        blocGauche.appendChild(imageProduit);
-        blocDroit.appendChild(descriptionProduit);
-        blocDroit.appendChild(prixProduit);
-        nomProduit.innerHTML = nom;
-        descriptionProduit.innerHTML = description;
-        prixProduit.innerHTML = prix + "€";
-        blocDroit.appendChild(choixPersonalisation);
-        let bouton= document.createElement("button");
-        blocDroit.appendChild(bouton);
-        bouton.setAttribute("type", "submit");
-        bouton.innerHTML = "Ajouter au panier";
-        let optionDefault=document.createElement("option");
-        choixPersonalisation.appendChild(optionDefault);
-        optionDefault.innerHTML = "Veuillez séléctionner une personalisation";
-        
-
+        Controller.displayBasketCount();
+        document.getElementById("container").innerHTML =`
+            <h1>${detailProduct.name}</h1>
+            <section>
+                <div>
+                    <img src="${detailProduct.imageUrl}"/>
+                </div>
+                <div>
+                    <p>${detailProduct.description}</p>
+                    <p>${detailProduct.price/100}€</p>
+                    <select id="select">
+                        <option>Veuillez choisir une personalisation</option>
+                    <select>
+                    <button type="submit" id="button"> Ajouter au panier </button>
+                </div>
+            </section>`;
         for (let i=0; i<detailProduct.colors.length; i++){
-            let option=detailProduct.colors[i];
-            option=document.createElement("option");
-            option.setAttribute("value",detailProduct.colors[i]);
-            option.innerHTML = detailProduct.colors[i];
-            choixPersonalisation.appendChild(option);
+            document.getElementById("select").innerHTML +=`
+                <option>${detailProduct.colors[i]}</option>`;
         }
+// Ajout au panier
 
-
-
-                
+        if (localStorage.getItem("panier")== null){
+            let panierInitialisation=[];
+        localStorage.setItem("panier", JSON.stringify(panierInitialisation));
+        }
+        let panier= JSON.parse(localStorage.getItem("panier"));
+        document.getElementById("button").addEventListener("click", function (){
+            panier.push(detailProduct._id);
+            localStorage.setItem("panier", JSON.stringify(panier));
+            console.log("Élément ajouté au panier");
+            Controller.displayBasketCount();
+        });     
     }
  
     /*******************************PAGE PANIER ********************************/
