@@ -48,13 +48,9 @@ class View {
         }
 // Ajout au panier
 
-        if (localStorage.getItem("panier")== null){
-            let panierInitialisation=[];
-        localStorage.setItem("panier", JSON.stringify(panierInitialisation));
-        }
         let panier= JSON.parse(localStorage.getItem("panier"));
         document.getElementById("button").addEventListener("click", function (){
-            panier.push(detailProduct._id);
+            panier.push(detailProduct);
             localStorage.setItem("panier", JSON.stringify(panier));
             console.log("Élément ajouté au panier");
             Controller.displayBasketCount();
@@ -65,7 +61,25 @@ class View {
 
     // Nous recupérons les données des produits achetés pour les afficher dans la page panier
     buyProduct(productBought) {
-        
+        for (let i=0; i<productBought.length; i++){
+            document.getElementById("listProductBought").innerHTML += `
+            <article id="product${+ i}">
+                <div><img src= "${productBought[i].imageUrl}"/></div>
+                <h2>${productBought[i].name}</h2>
+                <p>${productBought[i].price}€</p>
+                <button id="remove${+ i}">Retirer du panier</button>
+            </article>`;
+        }
+        for (let i=0; i<productBought.length; i++){
+            let panier= JSON.parse(localStorage.getItem("panier"));
+            document.getElementById("remove"+ i).addEventListener("click", function (){
+                panier.splice(i,1);
+                localStorage.removeItem("panier");
+                localStorage.setItem("panier", JSON.stringify(panier));
+                document.getElementById("listProductBought").removeChild(document.getElementById("product"+ i));
+                console.log("Élément supprimé du panier");
+            });
+        }
         
     }
 

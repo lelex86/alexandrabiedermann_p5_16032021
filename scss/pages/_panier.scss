@@ -1,0 +1,22 @@
+section{
+    article{
+        display: flex;
+        flex-wrap: nowrap;
+        border: black 1px;
+        text-align: center;
+        background: none;
+        img{
+            width:5%;
+            object-fit: cover;
+            border: black 1px;
+        }
+        h2{
+            border: black 1px;
+            background: none;
+        }
+        p{
+            border: black 1px;
+            background: none;
+        }
+    }
+}

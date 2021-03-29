@@ -105,7 +105,7 @@ footer p {
   text-decoration: none;
 }
 
-article {
+#container article {
   width: 100%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -117,13 +117,13 @@ article {
   background-color: #e48a25;
 }
 
-article div {
+#container article div {
   width: 100%;
   height: auto;
   overflow: hidden;
 }
 
-article div img {
+#container article div img {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -131,7 +131,7 @@ article div img {
      object-position: bottom;
 }
 
-article h2 {
+#container article h2 {
   text-align: center;
 }
 
@@ -168,5 +168,33 @@ section div img {
 section div select {
   display: block;
   margin: 2% auto;
+}
+
+section article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  border: black 1px;
+  text-align: center;
+  background: none;
+}
+
+section article img {
+  width: 5%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: black 1px;
+}
+
+section article h2 {
+  border: black 1px;
+  background: none;
+}
+
+section article p {
+  border: black 1px;
+  background: none;
 }
 /*# sourceMappingURL=style.css.map */
