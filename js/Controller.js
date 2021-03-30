@@ -9,6 +9,14 @@ class Controller {
             <a href="panier.html"><li><i class="fas fa-shopping-cart"></i></li></a>
             <p>${JSON.parse(window.localStorage.getItem("panier")).length}</p>`;
     }
+    static displayTotalPrice(){
+        let totalPrice=0;
+        let productBought=JSON.parse(localStorage.getItem("panier"));
+        for (let i=0; i<productBought.length; i++){  
+          totalPrice+=productBought[i].price/100;
+        }
+        document.getElementById("totalPrice").innerHTML=totalPrice;
+    }
     //classe pour la page d'accueil
     showListProduct() {
         let url = "http://localhost:3000/api/teddies/";

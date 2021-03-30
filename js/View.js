@@ -29,7 +29,7 @@ class View {
         Controller.displayBasketCount();
         document.getElementById("container").innerHTML =`
             <h1>${detailProduct.name}</h1>
-            <section>
+            <section class="detailProduct">
                 <div>
                     <img src="${detailProduct.imageUrl}"/>
                 </div>
@@ -66,10 +66,18 @@ class View {
             <article id="product${+ i}">
                 <div><img src= "${productBought[i].imageUrl}"/></div>
                 <h2>${productBought[i].name}</h2>
-                <p>${productBought[i].price}€</p>
+                <p>${productBought[i].price/100}€</p>
                 <button id="remove${+ i}">Retirer du panier</button>
             </article>`;
         }
+        
+        document.getElementById("listProductBought").innerHTML +=`
+        <article>
+            <h2>Total du panier : </h2>
+            <p id="totalPrice"></p>
+        </article>`;
+        Controller.displayTotalPrice();
+
         for (let i=0; i<productBought.length; i++){
             let panier= JSON.parse(localStorage.getItem("panier"));
             document.getElementById("remove"+ i).addEventListener("click", function (){
@@ -77,6 +85,7 @@ class View {
                 localStorage.removeItem("panier");
                 localStorage.setItem("panier", JSON.stringify(panier));
                 document.getElementById("listProductBought").removeChild(document.getElementById("product"+ i));
+                Controller.displayTotalPrice();
                 console.log("Élément supprimé du panier");
             });
         }

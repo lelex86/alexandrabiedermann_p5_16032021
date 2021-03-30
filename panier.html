@@ -50,34 +50,30 @@
 
     <main id="container">
     <section id=listProductBought>
-
     </section>    
-    
     <section id="form">
         <h2>Merci de renseigner vos informations</h2>
 
         <form id="formulaire" >
             <label for="lastname">Nom:</label>
-            <input id="lastname" type="text"  name="lname" pattern="[A-Za-z0-9]+" placeholder="Nom" required><br><br>
+            <input id="lastname" type="text"  name="lname" pattern="[A-Za-z-]+" placeholder="Nom" required><br><br>
 
-            <label for="fisrtname">Prenom:</label>
-            <input id="firstname" type="text" name="fname" pattern="[A-Za-z0-9]+" placeholder="Prénom" required><br><br>
+            <label for="fisrtname">Prénom:</label>
+            <input id="firstname" type="text" name="fname" pattern="[A-Za-z-]+" placeholder="Prénom" required><br><br>
 
             <label for="adress">Adresse:</label>
-            <input id="adress" type="text" name="adress" pattern="[A-Za-z0-9 ]+" placeholder="Adresse" required><br><br>
+            <input id="adress" type="text" name="adress" pattern="[A-Za-z0-9\s-]+" placeholder="Adresse" required><br><br>
 
             <label for="city">Ville:</label>
-            <input id="city" type="text" name="ville" pattern="[A-Za-z0-9]+" placeholder="Ville" required><br><br>
+            <input id="city" type="text" name="ville" pattern="[A-Za-z0-9\s-]+" placeholder="Ville" required><br><br>
 
             <label for="email">e-mail</label>
             <input id="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="e-mail" required />
 
-            <button type="submit" name="submit">Submit</button>
+            <button type="submit" name="submit" class="btn-center">Submit</button>
         </form>
-
     </section>
     </main> 
-
     <footer>
         <p>Mentions légales</p>
         <p>©Orinoco</p>
@@ -89,6 +85,5 @@
         let controller = new Controller();
         controller.showPanier();
     </script>
-
 </body>
 </html>

@@ -23,6 +23,9 @@ class Model {
 
     // Nouvelle classe pour réaliser notre POST
     static post(url) {
-               
+        let request = new XMLHttpRequest();
+        request.open("POST", "http://localhost:3000/api/teddies/order");
+        request.setRequestHeader("Content-Type", "application/json");
+        request.send(JSON.stringify(order));
     }
 }

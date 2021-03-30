@@ -1,10 +1,10 @@
-section{
+.detailProduct{
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
     margin: 3% 0;
-    div{
+    div{ 
         width:45%;
         min-width: 300px;
         height: fit-content;
