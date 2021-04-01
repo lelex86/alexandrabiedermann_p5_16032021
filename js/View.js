@@ -61,6 +61,7 @@ class View {
 
     // Nous recupérons les données des produits achetés pour les afficher dans la page panier
     buyProduct(productBought) {
+        let panier= JSON.parse(localStorage.getItem("panier"));
         for (let i=0; i<productBought.length; i++){
             document.getElementById("listProductBought").innerHTML += `
             <article id="product${+ i}">
@@ -79,7 +80,6 @@ class View {
         Controller.displayTotalPrice();
 
         for (let i=0; i<productBought.length; i++){
-            let panier= JSON.parse(localStorage.getItem("panier"));
             document.getElementById("remove"+ i).addEventListener("click", function (){
                 panier.splice(i,1);
                 localStorage.removeItem("panier");
@@ -89,14 +89,32 @@ class View {
                 console.log("Élément supprimé du panier");
             });
         }
-        
+        let formulaire= document.getElementById("formulaire");
+        document.getElementById("commandSend").addEventListener("click", function (event){
+            event.preventDefault();
+            let data=new FormData(formulaire);
+            let contact=JSON.stringify(data);
+            let products=[];
+            for (let i=0; i< panier.length; i++){
+                products.push(panier[i]._id)
+            };
+            let order={contact,products};
+            Controller.orderSending(order);
+            window.location.replace("commande.html");
+        });  
     }
 
 
     /***************************PAGE DE CONFIRMATION ***************************/
 
     // Page finale avec les données que nous prenons du POST ainsi que le total de la commande
-    cameraOrder(postOrder) {
+    productOrder(postOrder) {
         
+        let totalPrice=postOrder[1];
+        let commandNumber=postOrder[0];
+        document.getElementById("command").innerHTML += `
+            <p id="commandNumber">Votre numéro de commande est le: ${commandNumber}</p>
+            <p id="totalPrice">Prix total de votre commande: ${totalPrice}€</p>
+        `; 
     }
 }

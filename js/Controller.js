@@ -15,7 +15,20 @@ class Controller {
         for (let i=0; i<productBought.length; i++){  
           totalPrice+=productBought[i].price/100;
         }
-        document.getElementById("totalPrice").innerHTML=totalPrice;
+        document.getElementById("totalPrice").innerHTML+=totalPrice;
+        sessionStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+    }
+
+    static orderSending(order){
+        let url = "http://localhost:3000/api/teddies/order";
+        Model.post(url, order)
+        .then(function (response){
+            console.log("Connexion à l'API réussie!");
+            sessionStorage.setItem("commandNumber", JSON.parse(response));
+        })
+        .catch( function (error){
+            console.log("Échec connexion API. Erreur=", error);
+        });  
     }
     //classe pour la page d'accueil
     showListProduct() {
@@ -47,16 +60,19 @@ class Controller {
     }
 
     //Classe permettant d'afficher notre page panier
-    async showPanier() {
+   showPanier() {
 
         let productBought=JSON.parse(localStorage.getItem("panier"));
         let view = new View();
-        view.buyProduct(productBought)
-
+        view.buyProduct(productBought);
     }
 
     // page finale utilisant un POST pour afficher les données envoyées au server (Formulaire et produits)
-    async postOrder() {
-        
+    postOrder() {
+        let commandNumber=window.sessionStorage.getItem("commandNumber");
+        let totalPrice=JSON.parse(window.sessionStorage.getItem("totalPrice"));
+        let postOrder=[commandNumber, totalPrice];
+        let view = new View();
+        view.productOrder(postOrder);
     }
 }
