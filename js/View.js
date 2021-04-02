@@ -93,12 +93,13 @@ class View {
         document.getElementById("commandSend").addEventListener("click", function (event){
             event.preventDefault();
             let data=new FormData(formulaire);
-            let contact=JSON.stringify(data);
+            let contact=Controller.getFormData(data);
             let products=[];
             for (let i=0; i< panier.length; i++){
                 products.push(panier[i]._id)
             };
             let order={contact,products};
+            console.log("order:", order);
             Controller.orderSending(order);
             window.location.replace("commande.html");
         });  

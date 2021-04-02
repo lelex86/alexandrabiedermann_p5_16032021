@@ -1,4 +1,13 @@
 class Controller {
+
+    static getFormData(formData) {
+        let objectData = {};
+        formData.forEach(function (value, key) {
+            objectData[key] = value;
+        });
+        return (objectData);
+    }
+    
     //Classe à appeler dans la page html pour afficher la page
     static displayBasketCount(){
         if (localStorage.getItem("panier")== null){
