@@ -31,6 +31,7 @@
         <meta name="theme-color" content="#ffffff">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./css/style.css">
+        <script src="https://kit.fontawesome.com/8062eaba09.js" crossorigin="anonymous"></script>
         <script type="application/ld+json">
             {
               "@context": "https://schema.org",
@@ -70,7 +71,7 @@
             <label for="email">e-mail</label>
             <input id="email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="e-mail" required />
 
-            <button type="submit" name="submit" class="btn-center" id="commandSend">Submit</button>
+            <button type="submit" name="submit" onclick="Controller.sendOrder(this); return false;">Envoyer</button>
         </form>
     </section>
     </main> 

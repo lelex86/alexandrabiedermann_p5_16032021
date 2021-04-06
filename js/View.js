@@ -46,15 +46,7 @@ class View {
             document.getElementById("select").innerHTML +=`
                 <option>${detailProduct.colors[i]}</option>`;
         }
-// Ajout au panier
-
-        let panier= JSON.parse(localStorage.getItem("panier"));
-        document.getElementById("button").addEventListener("click", function (){
-            panier.push(detailProduct);
-            localStorage.setItem("panier", JSON.stringify(panier));
-            console.log("Élément ajouté au panier");
-            Controller.displayBasketCount();
-        });     
+        Controller.addToBasket(detailProduct);
     }
  
     /*******************************PAGE PANIER ********************************/
@@ -64,47 +56,32 @@ class View {
         let panier= JSON.parse(localStorage.getItem("panier"));
         for (let i=0; i<productBought.length; i++){
             document.getElementById("listProductBought").innerHTML += `
-            <article id="product${+ i}">
+            <article id="product${+ i}" class="basket">
                 <div><img src= "${productBought[i].imageUrl}"/></div>
                 <h2>${productBought[i].name}</h2>
                 <p>${productBought[i].price/100}€</p>
-                <button id="remove${+ i}">Retirer du panier</button>
+                <button id="${productBought.uniqueId}" onclick='Controller.deleteBasketLine(this)">Retirer du panier</button>
             </article>`;
         }
-        
         document.getElementById("listProductBought").innerHTML +=`
-        <article>
+        <article class="basket">
             <h2>Total du panier : </h2>
             <p id="totalPrice"></p>
         </article>`;
         Controller.displayTotalPrice();
-
-        for (let i=0; i<productBought.length; i++){
-            document.getElementById("remove"+ i).addEventListener("click", function (){
-                panier.splice(i,1);
-                localStorage.removeItem("panier");
-                localStorage.setItem("panier", JSON.stringify(panier));
-                document.getElementById("listProductBought").removeChild(document.getElementById("product"+ i));
-                Controller.displayTotalPrice();
-                console.log("Élément supprimé du panier");
-            });
-        }
-        let formulaire= document.getElementById("formulaire");
-        document.getElementById("commandSend").addEventListener("click", function (event){
-            event.preventDefault();
-            let data=new FormData(formulaire);
-            let contact=Controller.getFormData(data);
-            let products=[];
-            for (let i=0; i< panier.length; i++){
-                products.push(panier[i]._id)
-            };
-            let order={contact,products};
-            console.log("order:", order);
-            Controller.orderSending(order);
-            window.location.replace("commande.html");
-        });  
+        //Controller.removeFromBasket();
     }
-
+    errorBasket() {
+        document.getElementById("listProductBought").innerHTML +=`
+        <article class="errorBasket">
+            <h2>Panier vide!</h2>
+            <p><i class="fas fa-times-circle"></i></p>
+            <p> Il semblerait que vous ayez atteri ici par erreur. Séléctionnez au moins un de nos ours avant de revenir ici</p>
+            <button onclick="Controller.goToIndex(this)">Retourner à l'acceuil</button>
+        </article>`;
+        document.getElementById("form").style.display="none";
+        
+    }
 
     /***************************PAGE DE CONFIRMATION ***************************/
 

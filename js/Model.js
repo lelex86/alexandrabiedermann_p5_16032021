@@ -28,11 +28,13 @@ class Model {
             request.onreadystatechange = function (){
                 if (this.readyState===XMLHttpRequest.DONE&&this.status===201){
                     resolve=JSON.parse(request.responseText);
+                    console.log(JSON.parse(this.responseText).orderId);
+                    sessionStorage.setItem("commandNumber", JSON.parse(this.responseText).orderId);
                 }    
             }
             request.open("POST", url);
             request.setRequestHeader("Content-Type", "application/json");
-            request.send(JSON.stringify(order));
+            request.send(order);
         });
     }
 }

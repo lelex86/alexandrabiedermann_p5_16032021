@@ -1,6 +1,6 @@
 #listProductBought{
     width: 100%;
-    article{
+    .basket{
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
@@ -49,4 +49,21 @@
             width:70%;
         }
     }    
+}
+
+.errorBasket{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    p{
+        width: fit-content;
+        height: fit-content;
+        padding: 0;
+    }
+    i{
+        font-size: 5rem;
+        line-height: 5rem;
+        color: $color-secondary;
+    }
 }
