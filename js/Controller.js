@@ -13,8 +13,13 @@ class Controller {
             localStorage.setItem("panier", JSON.stringify(panierInitialisation));
         }
         document.getElementById("ul").innerHTML=`
-            <a href="panier.html"><li><i class="fas fa-shopping-cart"></i></li></a>
-            <p>${JSON.parse(window.localStorage.getItem("panier")).length}</p>`;
+            <a href="panier.html" aria-label="liens vers le panier">
+                <li>
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>${JSON.parse(window.localStorage.getItem("panier")).length}</p>
+                </li>
+            </a>
+            `;
     }
     static addToBasket(detailProduct){
         console.log("detailProduct:", detailProduct);
@@ -47,24 +52,10 @@ class Controller {
     static goToIndex(){
         window.location.replace("index.html");
     }
-    /*static removeFromBasket(){
-        let panier= JSON.parse(localStorage.getItem("panier"));
-        let productsBought=JSON.parse(localStorage.getItem("panier"));
-        for (let i=0; i<productsBought.length; i++){
-            document.getElementById("remove"+ i).addEventListener("click", function (){
-                panier.splice(i,1);
-                localStorage.removeItem("panier");
-                localStorage.setItem("panier", JSON.stringify(panier));
-                document.getElementById("listProductBought").removeChild(document.getElementById("product"+ i));
-                Controller.displayTotalPrice();
-                console.log("Élément supprimé du panier");
-            });
-        }
-    }*/
     static deleteBasketLine(basketLine) {
-        var panier = JSON.parse(localStorage.getItem("panier"));
+        let panier = JSON.parse(localStorage.getItem("panier"));
         // Supprime dans le panier l'élément donc le champ uniqueId correspond à celui du nounours supprimé
-        var newPanier = panier.filter(function (element) {
+        let newPanier = panier.filter(function (element) {
             return (element.uniqueId != basketLine.id);
         });
         //-------------------------------------------------------
@@ -95,19 +86,25 @@ class Controller {
         console.log("products:", products);
         let order=JSON.stringify({contact,products});
         console.log("order:", order);
-        Controller.orderSending(order);
-        window.location.replace("commande.html");    
+        Controller.orderSending(order);   
     }      
     static orderSending(order){
         let url = "http://localhost:3000/api/teddies/order";
         Model.post(url, order)
         .then(function (response){
             console.log("Connexion à l'API réussie!");
-            console.log(response);
+            console.log(JSON.parse(response));
         })
-        .catch( function (error){
+        .catch(function (error){
             console.log("Échec connexion API. Erreur=", error);
         });  
+        if (sessionStorage.getItem("commandNumber")==null || sessionStorage.getItem("commandNumber")==undefined){
+            console.log("numéro de commande vide");
+        }
+        else {
+            localStorage.clear();
+        }   
+        window.location.replace("commande.html")  
     }
     
     //Classe à appeler dans la page html pour afficher la page
@@ -122,6 +119,8 @@ class Controller {
         })
         .catch( function (error){
             console.log("Échec connexion API. Erreur=", error);
+            let view = new View();
+            view.showListProduct();
         });
     }
 
@@ -135,7 +134,7 @@ class Controller {
             let view = new View();
             view.showDetailProduct(JSON.parse(response));
         })
-        .catch( function (error){
+        .catch(function (error){
             console.log("Échec connexion API. Erreur=", error);
         });
     }
@@ -143,9 +142,9 @@ class Controller {
     //Classe permettant d'afficher notre page panier
    showPanier() {
         if(JSON.parse(localStorage.getItem("panier")).length>0){
-            let productBought=JSON.parse(localStorage.getItem("panier"));
+            let productsBought=JSON.parse(localStorage.getItem("panier"));
             let view = new View();
-            view.buyProduct(productBought);
+            view.buyProduct(productsBought);
         }
         else{
             let view = new View();

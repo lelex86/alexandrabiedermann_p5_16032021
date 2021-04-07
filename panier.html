@@ -57,19 +57,19 @@
 
         <form id="formulaire" name="contact">
             <label for="lastName">Nom:</label>
-            <input type="text"  name="lastName" pattern="[A-ZÀ-ÿa-z\s-]+" placeholder="Nom" required><br><br>
+            <input type="text"  name="lastName" pattern="[A-ZÀ-ÿa-z\s-]{2,100}" placeholder="Nom" required><br><br>
 
             <label for="firstName">Prénom:</label>
-            <input type="text" name="firstName" pattern="[A-ZÀ-ÿa-z\s-]+" placeholder="Prénom" required><br><br>
+            <input type="text" name="firstName" pattern="[A-ZÀ-ÿa-z\s-]{2,100}" placeholder="Prénom" required><br><br>
 
             <label for="address">Adresse:</label>
-            <input type="text" name="address" pattern="[A-Za-zÀ-ÿ0-9\s-]+" placeholder="Adresse" required><br><br>
+            <input type="text" name="address" pattern="[A-Za-zÀ-ÿ0-9\s-]{2,300}" placeholder="Adresse" required><br><br>
 
             <label for="city">Ville:</label>
-            <input type="text" name="city" pattern="[A-Za-zÀ-ÿ0-9\s-]+" placeholder="Ville" required><br><br>
+            <input type="text" name="city" pattern="[A-Za-zÀ-ÿ0-9\s-]{1,300}" placeholder="Ville" required><br><br>
 
             <label for="email">e-mail</label>
-            <input id="email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="e-mail" required />
+            <input id="email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" placeholder="e-mail" required />
 
             <button type="submit" name="submit" onclick="Controller.sendOrder(this); return false;">Envoyer</button>
         </form>

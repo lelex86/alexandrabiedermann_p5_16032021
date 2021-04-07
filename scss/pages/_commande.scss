@@ -1,0 +1,14 @@
+.commandConfirmation{
+    display: flex;
+    flex-wrap: wrap;
+    .commandNumber{
+        font-weight:bold;
+        color:$color-secondary;
+        padding-left:2%;
+    }
+}
+.errorCommand{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -14,7 +14,10 @@ class Model {
             request.onreadystatechange = function (){
                 if (this.readyState===XMLHttpRequest.DONE&&this.status===200){
                     resolve(request.responseText);
-                }    
+                }
+                else{
+                    console.log("Erreur connexion API!")
+                }
             }
             request.open("GET", url);
             request.send();

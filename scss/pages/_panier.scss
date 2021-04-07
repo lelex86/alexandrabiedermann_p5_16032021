@@ -1,33 +1,28 @@
 #listProductBought{
     width: 100%;
     .basket{
+        margin: 5% 0;
         display: flex;
-        flex-wrap: nowrap;
+        justify-content: space-between;
+        flex-wrap: wrap;
         align-items: center;
-        border: black 1px;
         text-align: center;
         background: none;
         box-sizing: border-box;
         div{
-            width:20%;
-            padding: 3%;
+            width:25%;
             img{
                 width:100%;
                 object-fit: cover;
-                border: black 1px;
             }
         }
         
         h2{
-            width:25%;
-            padding: 3%;
-            border: black 1px;
+            width:30%;
             background: none;
         }
         p{
             width:15%;
-            padding: 3%;
-            border: black 1px;
             background: none;
         }
     }

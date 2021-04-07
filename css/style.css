@@ -207,15 +207,18 @@ footer p {
 }
 
 #listProductBought .basket {
+  margin: 5% 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: black 1px;
   text-align: center;
   background: none;
   -webkit-box-sizing: border-box;
@@ -223,28 +226,22 @@ footer p {
 }
 
 #listProductBought .basket div {
-  width: 20%;
-  padding: 3%;
+  width: 25%;
 }
 
 #listProductBought .basket div img {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  border: black 1px;
 }
 
 #listProductBought .basket h2 {
-  width: 25%;
-  padding: 3%;
-  border: black 1px;
+  width: 30%;
   background: none;
 }
 
 #listProductBought .basket p {
   width: 15%;
-  padding: 3%;
-  border: black 1px;
   background: none;
 }
 
@@ -305,5 +302,32 @@ footer p {
   font-size: 5rem;
   line-height: 5rem;
   color: #e48a25;
+}
+
+.commandConfirmation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.commandConfirmation .commandNumber {
+  font-weight: bold;
+  color: #e48a25;
+  padding-left: 2%;
+}
+
+.errorCommand {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=style.css.map */
