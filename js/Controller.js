@@ -12,7 +12,7 @@ class Controller {
             let panierInitialisation=[];
             localStorage.setItem("panier", JSON.stringify(panierInitialisation));
         }
-        document.getElementById("ul").innerHTML=`
+        document.getElementById("ul").innerHTML= /*html*/`
             <a href="panier.html" aria-label="liens vers le panier">
                 <li>
                     <i class="fas fa-shopping-cart"></i>
@@ -22,35 +22,27 @@ class Controller {
             `;
     }
     static addToBasket(detailProduct){
-        console.log("detailProduct:", detailProduct);
         document.getElementById("button").addEventListener("click", function (){
             detailProduct.uniqueId = new Date().getTime();
             let panier= JSON.parse(localStorage.getItem("panier"));
             panier.push(detailProduct);
             localStorage.setItem("panier", JSON.stringify(panier));
-            console.log("Élément ajouté au panier");
             Controller.displayBasketCount();
             Controller.confirmBox();
         });
     }
     static confirmBox(){
-        document.getElementById("container").innerHTML += `
+        document.getElementById("container").innerHTML += /*html*/`
             <div id="customBoxContainer">
                 <div class="custom-box">
                     <p>L'article a bien été ajouté au panier</p>
                     <div>
-                        <button onclick="Controller.goToBasket(this); return false;">Aller au panier</button>
-                        <button onclick="Controller.goToIndex(this); return false;">Continuer les achats</button>
+                        <button onclick="window.location.replace('panier.html')">Aller au panier</button>
+                        <button onclick="window.location.replace('index.html')">Continuer les achats</button>
                     </div>
                 </div>
             </div>
         `;
-    }
-    static goToBasket(){
-        window.location.replace("panier.html");
-    }
-    static goToIndex(){
-        window.location.replace("index.html");
     }
     static deleteBasketLine(basketLine) {
         let panier = JSON.parse(localStorage.getItem("panier"));
@@ -61,8 +53,11 @@ class Controller {
         //-------------------------------------------------------
         localStorage.setItem("panier", JSON.stringify(newPanier));
         basketLine.parentNode.remove();
-        Controller.displayTotalPrice();
-        console.log("Élément supprimé du panier");
+        if (newPanier.length==0){
+            window.location.replace("index.html");
+        } else {
+            Controller.displayTotalPrice();
+        }
     }
     static displayTotalPrice(){
         let totalPrice=0;
@@ -78,36 +73,27 @@ class Controller {
         let formulaire= document.getElementById("formulaire");
         let data=new FormData(formulaire);
         let contact=Controller.getFormData(data);
-        console.log("contact:", contact);
         let products=[];
         for (let i=0; i< panier.length; i++){
             products.push(panier[i]._id)
         };
-        console.log("products:", products);
         let order=JSON.stringify({contact,products});
-        console.log("order:", order);
-        Controller.orderSending(order);   
-    }      
-    static orderSending(order){
         let url = "http://localhost:3000/api/teddies/order";
         Model.post(url, order)
         .then(function (response){
             console.log("Connexion à l'API réussie!");
-            console.log(JSON.parse(response));
+            sessionStorage.setItem("commandNumber", JSON.parse(response).orderId);
+            localStorage.clear();
+            window.location.replace("commande.html");
         })
         .catch(function (error){
             console.log("Échec connexion API. Erreur=", error);
+            window.location.replace("commande.html");
         });  
-        if (sessionStorage.getItem("commandNumber")==null || sessionStorage.getItem("commandNumber")==undefined){
-            console.log("numéro de commande vide");
-        }
-        else {
-            localStorage.clear();
-        }   
-        window.location.replace("commande.html")  
     }
     
     //Classe à appeler dans la page html pour afficher la page
+    
     //classe pour la page d'accueil
     showListProduct() {
         let url = "http://localhost:3000/api/teddies/";
@@ -117,10 +103,10 @@ class Controller {
             let view = new View();
             view.showListProduct(JSON.parse(response)); 
         })
-        .catch( function (error){
-            console.log("Échec connexion API. Erreur=", error);
+        .catch(function (error){
+            console.error("Échec connexion API. Erreur=", error);
             let view = new View();
-            view.showListProduct();
+            view.showListProduct([]);
         });
     }
 
@@ -133,9 +119,12 @@ class Controller {
             console.log("Connexion à l'API réussie!");
             let view = new View();
             view.showDetailProduct(JSON.parse(response));
+
         })
         .catch(function (error){
-            console.log("Échec connexion API. Erreur=", error);
+            console.error("Échec connexion API. Erreur=", error);
+            let view = new View();
+            view.showDetailProduct([]);
         });
     }
 
@@ -149,8 +138,7 @@ class Controller {
         else{
             let view = new View();
             view.errorBasket();
-        }
-        
+        } 
     }
     
     // page finale utilisant un POST pour afficher les données envoyées au server (Formulaire et produits)

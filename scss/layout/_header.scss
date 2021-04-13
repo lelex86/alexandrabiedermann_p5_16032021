@@ -4,7 +4,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     ul{
         padding: 0 2px;
         position: relative;
@@ -27,6 +27,7 @@ header{
     }
     img{
         text-align: left;
+        max-width: 75%;
     }
     
 }

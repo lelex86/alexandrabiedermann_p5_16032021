@@ -55,7 +55,7 @@
     <section id="form">
         <h2>Merci de renseigner vos informations</h2>
 
-        <form id="formulaire" name="contact">
+        <form id="formulaire" name="contact" onsubmit="Controller.sendOrder(this); return false;">
             <label for="lastName">Nom:</label>
             <input type="text"  name="lastName" pattern="[A-ZÀ-ÿa-z\s-]{2,100}" placeholder="Nom" required><br><br>
 
@@ -71,7 +71,7 @@
             <label for="email">e-mail</label>
             <input id="email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" placeholder="e-mail" required />
 
-            <button type="submit" name="submit" onclick="Controller.sendOrder(this); return false;">Envoyer</button>
+            <button type="submit" name="submit">Envoyer</button>
         </form>
     </section>
     </main> 

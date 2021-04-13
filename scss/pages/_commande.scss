@@ -1,14 +1,18 @@
-.commandConfirmation{
-    display: flex;
-    flex-wrap: wrap;
+#command{
+    text-align: center;
+    .commandConfirmation{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
     .commandNumber{
         font-weight:bold;
         color:$color-secondary;
         padding-left:2%;
     }
+    #totalPrice{
+        text-align: center;
+    }
+    
 }
-.errorCommand{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+

@@ -38,27 +38,10 @@
         width: 100%;
         label{
             display: inline-block;
-            width:15%;
+            width:20%;
         }
         input{
             width:70%;
         }
     }    
-}
-
-.errorBasket{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    p{
-        width: fit-content;
-        height: fit-content;
-        padding: 0;
-    }
-    i{
-        font-size: 5rem;
-        line-height: 5rem;
-        color: $color-secondary;
-    }
 }

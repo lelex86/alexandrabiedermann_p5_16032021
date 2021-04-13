@@ -5,35 +5,40 @@
 class Model {
 
     /**
-     * Cette méthode appelle une url et retourne son contenu après un parseJSON. 
+     * Cette méthode appelle une url et retourne son contenu.
      * @param {string} url 
      */
     static get(url) {
-        return new Promise (function (resolve) {
+        return new Promise (function (resolve, reject) {
             let request = new XMLHttpRequest();
             request.onreadystatechange = function (){
-                if (this.readyState===XMLHttpRequest.DONE&&this.status===200){
+                if (request.readyState===4){
+                    if(request.status===200){
                     resolve(request.responseText);
-                }
-                else{
-                    console.log("Erreur connexion API!")
+                    
+                    }else{
+                    reject(request);
+                    }
                 }
             }
-            request.open("GET", url);
+            request.open("GET", url, true);
             request.send();
         } );        
     };
 
     // Nouvelle classe pour réaliser notre POST
     static post(url,order) {
-        return new Promise (function (resolve) {
+        return new Promise (function (resolve, reject) {
             let request = new XMLHttpRequest();
             request.onreadystatechange = function (){
-                if (this.readyState===XMLHttpRequest.DONE&&this.status===201){
-                    resolve=JSON.parse(request.responseText);
-                    console.log(JSON.parse(this.responseText).orderId);
-                    sessionStorage.setItem("commandNumber", JSON.parse(this.responseText).orderId);
-                }    
+                if (request.readyState===4){
+                    if(request.status===201){
+                    resolve(request.responseText);
+                    
+                    }else{
+                    reject(request);
+                    }
+                }
             }
             request.open("POST", url);
             request.setRequestHeader("Content-Type", "application/json");

@@ -5,11 +5,18 @@ body {
 h1 {
   text-align: center;
   margin: 1% auto 5%;
+  width: 100%;
+}
+
+.flex-center {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 button {
   display: block;
-  padding: 2% 4%;
+  padding: 10px 40px;
   margin: 4% auto;
   border-radius: 15px;
   background-color: #d5c4fd;
@@ -42,6 +49,8 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -63,6 +72,38 @@ button {
           align-items: center;
 }
 
+.error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.error p, .error h2 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 0;
+}
+
+.error i {
+  font-size: 5rem;
+  line-height: 5rem;
+  color: #e48a25;
+}
+
 header {
   width: 90%;
   margin: 3% auto 2%;
@@ -75,8 +116,8 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 
 header ul {
@@ -103,6 +144,7 @@ header ul p {
 
 header img {
   text-align: left;
+  max-width: 75%;
 }
 
 .fa-shopping-cart {
@@ -266,68 +308,35 @@ footer p {
 
 #form form label {
   display: inline-block;
-  width: 15%;
+  width: 20%;
 }
 
 #form form input {
   width: 70%;
 }
 
-.errorBasket {
+#command {
+  text-align: center;
+}
+
+#command .commandConfirmation {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.errorBasket p {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  padding: 0;
-}
-
-.errorBasket i {
-  font-size: 5rem;
-  line-height: 5rem;
-  color: #e48a25;
-}
-
-.commandConfirmation {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
 
-.commandConfirmation .commandNumber {
+#command .commandNumber {
   font-weight: bold;
   color: #e48a25;
   padding-left: 2%;
 }
 
-.errorCommand {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+#command #totalPrice {
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */
