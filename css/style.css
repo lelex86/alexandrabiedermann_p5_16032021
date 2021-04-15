@@ -120,16 +120,12 @@ header {
       flex-wrap: nowrap;
 }
 
-header ul {
+header nav {
   padding: 0 2px;
   position: relative;
 }
 
-header ul li {
-  list-style: none;
-}
-
-header ul p {
+header nav p {
   margin: 0;
   width: 18px;
   height: 18px;

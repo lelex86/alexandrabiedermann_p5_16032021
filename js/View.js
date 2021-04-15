@@ -7,7 +7,7 @@ class View {
         if(listProduct.length>0){
             for (let i=0; i<listProduct.length; i++){
                 document.getElementById("container").innerHTML+=/*html*/`
-                    <a href= "ficheProduit.html?id=${listProduct[i]._id}" aria-label="lien vers le produit">
+                    <a href= "fiche-produit.html?id=${listProduct[i]._id}" aria-label="lien vers le produit">
                         <article>
                             <div>
                                 <img src="${listProduct[i].imageUrl}" alt="Nounours ${listProduct[i].name}"/>
@@ -32,10 +32,11 @@ class View {
 
     // On affiche le produit récuperé avec l'Id + l'URL via notre controller
     showDetailProduct(detailProduct) {
-        Controller.displayBasketCount();
-        console.log("produit", detailProduct);
-        console.log("longueur", detailProduct.length);
+        Controller.displayBasketCount();     
         if(detailProduct.length==0){
+            document.querySelector('meta[name="description"]').setAttribute("content", "Ceci est une page d'erreur.");
+            document.querySelector('meta[property="og:description"]').setAttribute("content", "Ceci est une page d'erreur.");
+            document.querySelector("title").innerHTML="erreur";
             document.getElementById("container").innerHTML =/*html*/`
             <h1>Problème technique</h1>
             <article class="error">
@@ -46,6 +47,9 @@ class View {
             </article>
             `;
         } else{
+            document.querySelector('meta[name="description"]').setAttribute("content", "Découvrez les particularités de "+detailProduct.name+", nounours d'exception.");
+            document.querySelector('meta[property="og:description"]').setAttribute("content", "Découvrez les particularités de "+detailProduct.name+", nounours d'exception.");
+            document.querySelector("title").innerHTML=detailProduct.name;
             document.getElementById("container").innerHTML =/*html*/`
                 <h1>${detailProduct.name}</h1>
                 <section class="detailProduct">

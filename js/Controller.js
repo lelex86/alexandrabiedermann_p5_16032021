@@ -12,12 +12,10 @@ class Controller {
             let panierInitialisation=[];
             localStorage.setItem("panier", JSON.stringify(panierInitialisation));
         }
-        document.getElementById("ul").innerHTML= /*html*/`
-            <a href="panier.html" aria-label="liens vers le panier">
-                <li>
-                    <i class="fas fa-shopping-cart"></i>
-                    <p>${JSON.parse(window.localStorage.getItem("panier")).length}</p>
-                </li>
+        document.getElementById("nav").innerHTML= /*html*/`
+            <a href="panier.html" rel=”nofollow” aria-label="liens vers le panier">
+                <i class="fas fa-shopping-cart"></i>
+                <p>${JSON.parse(window.localStorage.getItem("panier")).length}</p>
             </a>
             `;
     }
