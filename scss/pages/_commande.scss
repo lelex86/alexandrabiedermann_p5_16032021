@@ -1,14 +1,15 @@
 #command{
     text-align: center;
+    min-height: 100%;
     .commandConfirmation{
         display: flex;
         justify-content: center;
+        align-items: center;
         flex-wrap: wrap;
     }
     .commandNumber{
         font-weight:bold;
         color:$color-secondary;
-        padding-left:2%;
     }
     #totalPrice{
         text-align: center;

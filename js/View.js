@@ -11,7 +11,7 @@ class View {
                         <article>
                             <div>
                                 <img src="${listProduct[i].imageUrl}" alt="Nounours ${listProduct[i].name}"/>
-                                <h2>${listProduct[i].name}</h2>
+                                <h2 class="product-name">${listProduct[i].name}</h2>
                             </div>
                         </article>
                     </a>`;
@@ -51,7 +51,7 @@ class View {
             document.querySelector('meta[property="og:description"]').setAttribute("content", "Découvrez les particularités de "+detailProduct.name+", nounours d'exception.");
             document.querySelector("title").innerHTML=detailProduct.name;
             document.getElementById("container").innerHTML =/*html*/`
-                <h1>${detailProduct.name}</h1>
+                <h1 class="product-name">${detailProduct.name}</h1>
                 <section class="detailProduct">
                     <div>
                         <img src="${detailProduct.imageUrl}" alt="Nounours ${detailProduct.name}"/>
@@ -59,17 +59,20 @@ class View {
                     <div>
                         <p>${detailProduct.description}</p>
                         <p>${detailProduct.price/100}€</p>
-                        <select id="select">
-                            <option>Veuillez choisir une personalisation</option>
-                        <select>
-                        <button type="submit" id="button"> Ajouter au panier </button>
+                        <form onsubmit="Controller.addToBasket(this); return false;">
+                            <select id="select" required>
+                                <option value="">Veuillez choisir une personalisation</option>
+                            <select>
+                            <button type="submit" id="button"> Ajouter au panier </button>
+                        </form>
+                        
                     </div>
                 </section>`;
             for (let i=0; i<detailProduct.colors.length; i++){
                 document.getElementById("select").innerHTML +=/*html*/`
-                    <option>${detailProduct.colors[i]}</option>`;
+                    <option value="${detailProduct.colors[i]}">${detailProduct.colors[i]}</option>`;
             }
-            Controller.addToBasket(detailProduct);
+            
         }
     }
  
@@ -81,7 +84,7 @@ class View {
             document.getElementById("listProductBought").innerHTML +=/*html*/ `
             <article class="basket">
                 <div><img src= "${productBought.imageUrl}" alt="Nounours ${productBought.name}"/></div>
-                <h2>${productBought.name}</h2>
+                <h2 class="product-name">${productBought.name}</h2>
                 <p>${productBought.price/100}€</p>
                 <button id="${productBought.uniqueId}" onclick="Controller.deleteBasketLine(this);">Retirer du panier</button>
             </article>`;
@@ -126,12 +129,14 @@ class View {
                 `;
         } else{
             document.getElementById("command").innerHTML +=/*html*/ `
-            <div class="commandConfirmation">
-                <p>Votre numéro de commande est le : </p>
-                <p class="commandNumber"> ${commandNumber}</p>
-            </div>
-            <p id="totalPrice">Prix total de votre commande: ${totalPrice}€</p>
-            <button onclick="sessionStorage.clear(); window.location.replace('index.html')">Retour à la boutique</button>
+            <article>
+                <div class="commandConfirmation">
+                    <p>Votre numéro de commande est le : </p>
+                    <p class="commandNumber">&nbsp ${commandNumber}</p>
+                </div>
+                <p id="totalPrice">Prix total de votre commande: ${totalPrice}€</p>
+                <button onclick="sessionStorage.clear(); window.location.replace('index.html')">Retour à la boutique</button>
+            </article>
         `; 
         }   
     }

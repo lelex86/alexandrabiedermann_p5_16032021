@@ -1,3 +1,8 @@
+let panier= JSON.parse(localStorage.getItem("panier"));
+let id = new URLSearchParams(window.location.search).get('id');
+let url="http://localhost:3000/api/teddies/";
+let urlId=url + id;
+let urlOrder=url+"/order";
 class Controller {
     //Fonctions générales
     static getFormData(formData) {
@@ -19,14 +24,23 @@ class Controller {
             </a>
             `;
     }
-    static addToBasket(detailProduct){
-        document.getElementById("button").addEventListener("click", function (){
+    static addToBasket(){
+        let detailProduct =Model.get(urlId)
+        .then(function (response){
+            console.log("Connexion à l'API réussie!");
+            detailProduct=JSON.parse(response);
             detailProduct.uniqueId = new Date().getTime();
-            let panier= JSON.parse(localStorage.getItem("panier"));
             panier.push(detailProduct);
+            console.log("panier", panier);
             localStorage.setItem("panier", JSON.stringify(panier));
             Controller.displayBasketCount();
             Controller.confirmBox();
+        })
+        .catch(function (error){
+            console.error("Échec connexion API. Erreur=", error);
+            Controller.displayBasketCount();
+            Controller.errorBox();
+            
         });
     }
     static confirmBox(){
@@ -42,8 +56,20 @@ class Controller {
             </div>
         `;
     }
+    static errorBox(){
+        document.getElementById("container").innerHTML += /*html*/`
+            <div id="customBoxContainer">
+                <div class="custom-box">
+                    <p>Nous avons rencontré un problème technique, l’article n’a pas pu être ajouté à votre panier. Veuillez nous excuser du désagrément et réessayer.</p>
+                    <div>
+                        <button onclick="window.location.replace('index.html')">Retour à la boutique</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
     static deleteBasketLine(basketLine) {
-        let panier = JSON.parse(localStorage.getItem("panier"));
+        panier= JSON.parse(localStorage.getItem("panier"));
         // Supprime dans le panier l'élément donc le champ uniqueId correspond à celui du nounours supprimé
         let newPanier = panier.filter(function (element) {
             return (element.uniqueId != basketLine.id);
@@ -67,7 +93,6 @@ class Controller {
         sessionStorage.setItem("totalPrice", JSON.stringify(totalPrice));
     }
     static sendOrder(){
-        let panier= JSON.parse(localStorage.getItem("panier"));
         let formulaire= document.getElementById("formulaire");
         let data=new FormData(formulaire);
         let contact=Controller.getFormData(data);
@@ -76,8 +101,7 @@ class Controller {
             products.push(panier[i]._id)
         };
         let order=JSON.stringify({contact,products});
-        let url = "http://localhost:3000/api/teddies/order";
-        Model.post(url, order)
+        Model.post(urlOrder, order)
         .then(function (response){
             console.log("Connexion à l'API réussie!");
             sessionStorage.setItem("commandNumber", JSON.parse(response).orderId);
@@ -94,7 +118,6 @@ class Controller {
     
     //classe pour la page d'accueil
     showListProduct() {
-        let url = "http://localhost:3000/api/teddies/";
         let listProduct = Model.get(url)
         .then(function (response){
             console.log("Connexion à l'API réussie!");
@@ -110,9 +133,7 @@ class Controller {
 
     //Classe pour un produit en particulier en utilisant l'id à ajouter à notre url de base
     showDetailProduct() {
-        let id = new URLSearchParams(window.location.search).get('id');
-        let url = "http://localhost:3000/api/teddies/" + id;
-        let detailProduct =Model.get(url)
+        let detailProduct =Model.get(urlId)
         .then(function (response){
             console.log("Connexion à l'API réussie!");
             let view = new View();
@@ -128,7 +149,7 @@ class Controller {
 
     //Classe permettant d'afficher notre page panier
    showPanier() {
-        if(JSON.parse(localStorage.getItem("panier")).length>0){
+        if(panier.length>0){
             let productsBought=JSON.parse(localStorage.getItem("panier"));
             let view = new View();
             view.buyProduct(productsBought);
