@@ -1,10 +1,10 @@
 #customBoxContainer{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     display: flex;
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     background-color: rgba(228,138,37,0.5);
     .custom-box {
         border: 2px solid grey;

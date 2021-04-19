@@ -25,12 +25,12 @@ class Controller {
             `;
     }
     static addToBasket(){
-        let detailProduct =Model.get(urlId)
+        let product =Model.get(urlId)
         .then(function (response){
             console.log("Connexion à l'API réussie!");
-            detailProduct=JSON.parse(response);
-            detailProduct.uniqueId = new Date().getTime();
-            panier.push(detailProduct);
+            product=JSON.parse(response);
+            product.uniqueId = new Date().getTime();
+            panier.push(product);
             console.log("panier", panier);
             localStorage.setItem("panier", JSON.stringify(panier));
             Controller.displayBasketCount();
