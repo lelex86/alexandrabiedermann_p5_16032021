@@ -1,35 +1,38 @@
-header{
+header {
     width: 90%;
     margin: 3% auto 2%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
-    nav{
+
+    nav {
         padding: 0 2px;
         position: relative;
-        p{
-            margin:0;
-            width:18px;
+
+        p {
+            margin: 0;
+            width: 18px;
             height: 18px;
             text-align: center;
             border-radius: 50%;
             background-color: white;
             position: absolute;
-            top:20%;
-            left:49%;
-            z-index:2;
+            top: 20%;
+            left: 49%;
+            z-index: 2;
 
         }
     }
-    img{
+
+    img {
         text-align: left;
         max-width: 75%;
     }
-    
+
 }
 
-.fa-shopping-cart{
+.fa-shopping-cart {
     color: $color-primary;
     font-size: 3rem;
 }

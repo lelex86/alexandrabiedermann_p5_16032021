@@ -1,15 +1,18 @@
-.error{
+.error {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    p, h2{
+
+    p,
+    h2 {
         width: fit-content;
         height: fit-content;
         padding: 0;
     }
-    i{
+
+    i {
         font-size: 5rem;
         line-height: 5rem;
         color: $color-secondary;
